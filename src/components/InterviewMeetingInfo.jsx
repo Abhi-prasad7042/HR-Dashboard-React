@@ -12,7 +12,7 @@ function InterviewMeetingInfo() {
           <i className="bi bi-three-dots-vertical"></i>
         </button>
       </div>
-      <div className="overflow-y-auto custom-scrollbar p-2" style={{ maxHeight: '300px' }}>
+      <div className="overflow-y-auto p-2" style={{ maxHeight: '300px' }}>
         {meetingsData.map((meeting) => (
           <MeetingInfoCard key={meeting.id} meeting={meeting} />
         ))}

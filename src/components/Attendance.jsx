@@ -10,7 +10,7 @@ const Attendance = () => {
         return circumference - (percentage / 100) * circumference;
     };
     return (
-        <div className="col-span-1 w-[395px] bg-white p-6 rounded-lg shadow-md border-[1px]">
+        <div className="col-span-1 w-2/6 bg-white p-6 rounded-lg shadow-md border-[1px]">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="font-semibold text-lg text-blue-900">Today</h2>
                 <span className="px-2 py-1 bg-red-100 text-red-600 text-sm rounded">Absent</span>
@@ -28,7 +28,7 @@ const Attendance = () => {
                     </svg>
                     <span className="text-sm">You have not marked yourself as present today!</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-10 border-l-2 w-32 px-1 border-red-600 bg-gray-100 py-1">Time left: <span className="text-red-600">{data.attendance.today.timeLeft}</span></p>
+                <p className="text-sm text-gray-600 mt-10 border-l-2 w-36 px-1 border-red-600 bg-gray-100 py-1">Time left: <span className="text-red-600">{data.attendance.today.timeLeft}</span></p>
                 </div>
 
                 {/* Right side: SVG graphic */}
