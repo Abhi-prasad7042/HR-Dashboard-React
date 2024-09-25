@@ -27,7 +27,8 @@ const Dashboard = () => {
 
   return (
     <div className="p-4 bg-white rounded-lg">
-      <div className="flex justify-between items-center mb-4">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
         <h1 className="text-lg font-semibold">Good afternoon, {dashboardData.user}!</h1>
         
         {/* Time Box */}
@@ -39,10 +40,10 @@ const Dashboard = () => {
           <FaRegClock className="w-6 h-6 text-blue-900" />
         </div>
       </div>
+    
+      <p className="md:-mt-5 text-xs text-gray-600 mt-2">You have {dashboardData.leaveRequests} leave requests pending.</p>
 
-      <p className='-mt-5 text-xs text-gray-600'>You have {dashboardData.leaveRequests} leave requests pending.</p>
-
-      <div className="flex justify-between gap-2 mt-3">
+      <div className="flex justify-between flex-wrap gap-2 md:mt-3 mt-6">
         {/* Today's attendance card */}
         <Attendance/>
 
@@ -52,7 +53,7 @@ const Dashboard = () => {
         {/* Attendance summary */}
         <AttendanceSummary/>
       </div>
-      <div className="flex justify-between gap-2 mt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
         <MyTeam/>
         <WorkingHistory/>
       </div>
