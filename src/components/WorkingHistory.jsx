@@ -9,9 +9,9 @@ function WorkingHistory() {
   // Helper function to get circle color based on effective time
   const getCircleColor = (effectiveTime) => {
     const hours = parseFloat(effectiveTime.split(':')[0]);
-    if (hours >= 9) return 'text-green-500';  // Full green circle for 9 or more hours
-    if (hours > 4) return 'text-yellow-500';  // Yellow circle for more than 4 hours
-    return 'text-red-500';  // Red circle for less than 4 hours
+    if (hours >= 9) return 'text-green-500'; // Full green circle for 9 or more hours
+    if (hours > 4) return 'text-yellow-500'; // Yellow circle for more than 4 hours
+    return 'text-red-500'; // Red circle for less than 4 hours
   };
 
   // Convert time string to hours
@@ -66,7 +66,7 @@ function WorkingHistory() {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h2 className="font-semibold text-lg text-blue-900">Working History</h2>
-          <div className="flex items-center mt-2 text-xs text-gray-700">
+          <div className="flex items-center mt-2 text-xs text-gray-700 mb-4 flex-wrap sm:flex-nowrap">
             <div className="flex items-center mr-2">
               <span className="block w-2 h-2 rounded-full bg-green-500 mr-1"></span>
               <span>Meeting Criteria</span>
@@ -85,20 +85,9 @@ function WorkingHistory() {
             </div>
           </div>
         </div>
-        <div className="absolute right-20 -mt-10">
-          <select className="block appearance-none w-full py-2 px-6 border border-gray-300 bg-white text-gray-700 text-xs rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-left">
-            <option>Show All</option>
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
-          </select>
-          <svg className="absolute right-1 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </div>
       </div>
 
-      <div className="overflow-auto" style={{ maxHeight: '300px' }}>
+      <div className="overflow-auto md:-mt-4 -mt-5" style={{ maxHeight: '300px' }}>
         <table className="w-full border-collapse">
           <thead>
             <tr>
@@ -111,7 +100,7 @@ function WorkingHistory() {
                   </div>
                 </div>
               </th>
-              <th className="p-2 text-left text-gray-500 bg-gray-100 text-xs">
+              <th className="p-2 text-left text-gray-500 bg-gray-100 text-xs hidden md:table-cell">
                 <div className="flex justify-between items-center cursor-pointer" onClick={() => handleSort('arrivalTime')}>
                   Arrival
                   <div className="flex flex-col">
@@ -120,7 +109,7 @@ function WorkingHistory() {
                   </div>
                 </div>
               </th>
-              <th className="p-2 text-left text-gray-500 bg-gray-100 text-xs">
+              <th className="p-2 text-left text-gray-500 bg-gray-100 text-xs hidden md:table-cell">
                 <div className="flex justify-between items-center cursor-pointer" onClick={() => handleSort('departureTime')}>
                   Departure
                   <div className="flex flex-col">
@@ -148,27 +137,26 @@ function WorkingHistory() {
             ) : (
               sortedData.map((entry, index) => {
                 const isToday = entry.departureTime === 'Still in office'; // Check if it's today
-                const isAbsent = entry.arrivalTime === 'absent';
-                const isHoliday = entry.arrivalTime === 'holiday';
-                const isLeave = entry.arrivalTime === 'leave';
 
                 return (
                   <tr key={index} className="hover:bg-gray-200">
                     <td className="p-2 text-left flex items-center mt-1 text-xs">
                       {/* Circle with day */}
-                      <div className={`w-6 h-6 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 text-xs mr-2`}>
+                      <div className={`w-6 h-6 md:text-sm text-xs flex items-center justify-center rounded-full bg-gray-300 text-gray-700 text-xs mr-2`}>
                         {isToday ? 'T' : entry.date.split('/')[0]} {/* Show "T" for Today */}
                       </div>
                       {/* Full date or "Today's" */}
-                      {isToday ? <span className="text-blue-600">Today's</span> : entry.date}
+                      {isToday ? <span className="md:text-sm text-xs text-blue-600">Today's</span> : entry.date}
                     </td>
-                    <td className={`p-2 text-left text-xs ${isAbsent ? 'text-red-500' : isHoliday ? 'text-yellow-500' : isLeave ? 'text-green-500' : ''}`}>
-                      {entry.arrivalTime}
+                    <td className="p-2 text-left text-xs hidden md:table-cell">{entry.arrivalTime}</td>
+                    <td className="p-2 text-left text-xs hidden md:table-cell">
+                      {entry.departureTime === 'Still in office' ? (
+                        <span className="text-blue-500">{entry.departureTime}</span>
+                      ) : (
+                        entry.departureTime
+                      )}
                     </td>
-                    <td className={`p-2 text-left text-xs ${isToday ? 'text-gray-400' : ''}`}>
-                      {entry.departureTime}
-                    </td>
-                    <td className="p-2 text-left text-xs">
+                    <td className="p-2 text-left md:text-xs text-[10px]">
                       <div className="flex items-center justify-around">
                         {/* Effective time on the left */}
                         <div>

@@ -3,7 +3,7 @@ import { dashboardData } from '../utils/constant'; // Import the data
 const AttendanceSummary = () => {
     const data = dashboardData; 
     return (
-        <div className="col-span-1 w-2/6 bg-white p-2 rounded-lg shadow-md border-[1px]">
+        <div className="col-span-1 w-full lg:w-2/6 bg-white p-6 rounded-lg shadow-md border-[1px]">
         <div className="flex justify-between items-center ">
           <h2 className="font-semibold text-lg text-blue-900">My Attendance</h2>
           <span className="px-2 py-1 font-semibold text-blue-600 text-sm rounded cursor-pointer">
@@ -14,7 +14,7 @@ const AttendanceSummary = () => {
   <hr className="mb-4" />
 
   {/* Attendance List with colored dots */}
-  <div className="flex justify-between items-center">
+  <div className="flex flex-col md:flex-row items-center md:mb-4">
     <ul className="mb-4 text-sm space-y-2 -ml-5">
       <li className="flex items-center py-1">
         <span className="w-2.5 h-2.5 rounded-full bg-green-500 mr-2"></span>
